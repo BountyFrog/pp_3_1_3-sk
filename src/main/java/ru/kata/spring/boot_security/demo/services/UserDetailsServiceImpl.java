@@ -28,4 +28,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
         return new UserDetailsImpl(user);
     }
+
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
 }

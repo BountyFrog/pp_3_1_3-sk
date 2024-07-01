@@ -19,7 +19,9 @@ public class UserController {
 
     @GetMapping("user")
     public String showUser(Model model, @ModelAttribute User user, Principal principal) {
-        model.addAttribute("user", userDetailsService.loadUserByUsername(principal.getName()));
+        System.out.println(principal);
+        model.addAttribute("user", userDetailsService.findByUsername(principal.getName()));
+        System.out.println(userDetailsService.findByUsername(principal.getName()));
         return "user";
     }
 }

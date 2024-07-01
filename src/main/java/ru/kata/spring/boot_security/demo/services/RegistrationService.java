@@ -6,6 +6,8 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.kata.spring.boot_security.demo.models.*;
 import ru.kata.spring.boot_security.demo.repositories.UserRepository;
 
+import java.security.Principal;
+
 @Service
 @Transactional
 public class RegistrationService {
@@ -19,5 +21,10 @@ public class RegistrationService {
 
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    public String getPrincipalName(Principal principal) {
+        System.out.println("Principal is " + principal);
+        return principal.getName();
     }
 }
