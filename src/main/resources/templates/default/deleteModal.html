@@ -17,8 +17,23 @@
                     </div>
                     <div class="form-group fw-bold"
                          style="text-align: center">
-                        <label for="user-name-delete" class="col-form-label">Username</label>
+                        <label for="user-name-delete" class="col-form-label">First name</label>
                         <input type="text" class="form-control" id="user-name-delete" disabled>
+                    </div>
+                    <div class="form-group fw-bold"
+                         style="text-align: center">
+                        <label for="user-lastname-delete" class="col-form-label">Lastname</label>
+                        <input type="text" class="form-control" id="user-lastname-delete" disabled>
+                    </div>
+                    <div class="form-group fw-bold"
+                         style="text-align: center">
+                        <label for="user-age-delete" class="col-form-label">Lastname</label>
+                        <input type="text" class="form-control" id="user-age-delete" disabled>
+                    </div>
+                    <div class="form-group fw-bold"
+                         style="text-align: center">
+                        <label for="user-email-delete" class="col-form-label">Lastname</label>
+                        <input type="text" class="form-control" id="user-email-delete" disabled>
                     </div>
                     <div class="form-group fw-bold"
                          style="text-align: center">
@@ -62,6 +77,9 @@
                     let modal = $(this)
                     modal.find('#user-id-delete').val(data.id)
                     modal.find('#user-name-delete').val(data.username)
+                    modal.find('#user-lastname-delete').val(data.lastname)
+                    modal.find('#user-age-delete').val(data.age)
+                    modal.find('#user-email-delete').val(data.email)
                     modal.find('#user-password-delete').val(data.password)
                 },
                 error: (err) => {
@@ -76,9 +94,12 @@
         let user = {};
         user.id = document.getElementById("user-id-delete").value;
         user.username = document.getElementById("user-name-delete").value;
+        user.lastname = document.getElementById("user-lastname-delete").value;
+        user.age = document.getElementById("user-age-delete").value;
+        user.email = document.getElementById("user-email-delete").value;
         user.password = document.getElementById("user-password-delete").value;
         let roles = document.getElementById("user-roles-delete");
-        let selectedRoles = [{"id":2,"name":"ROLE_USER","authority":""}];
+        let selectedRoles = [{"id": 2, "name": "ROLE_USER", "authority": ""}];
         for (let i = 0; i < roles.options.length; i++) {
             if (roles.options[i].selected) {
                 selectedRoles.push({

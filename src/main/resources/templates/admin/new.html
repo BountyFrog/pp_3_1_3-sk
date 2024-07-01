@@ -40,13 +40,46 @@
                                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                                 <div class="container login-form-field justify-content-center p-3"
                                      style="text-align: center">
-                                    <label for="username" class="fw-bold">Username</label>
+                                    <label for="username" class="fw-bold">First name</label>
                                     <input autofocus type="text" class="form-control-sm" style="width: 100%"
-                                           placeholder="Username"
+                                           placeholder="First name"
                                            name="username" id="username"/>
                                     <div style="color:red" th:if="${#fields.hasErrors('username')}"
                                          th:errors="*{username}">
-                                        Username Error
+                                        First name Error
+                                    </div>
+                                </div>
+                                <div class="container login-form-field justify-content-center p-3"
+                                     style="text-align: center">
+                                    <label for="lastname" class="fw-bold">First name</label>
+                                    <input autofocus type="text" class="form-control-sm" style="width: 100%"
+                                           placeholder="Last name"
+                                           name="lastname" id="lastname"/>
+                                    <div style="color:red" th:if="${#fields.hasErrors('lastname')}"
+                                         th:errors="*{lastname}">
+                                        Last name Error
+                                    </div>
+                                </div>
+                                <div class="container login-form-field justify-content-center p-3"
+                                     style="text-align: center">
+                                    <label for="age" class="fw-bold">Age</label>
+                                    <input autofocus type="text" class="form-control-sm" style="width: 100%"
+                                           placeholder="Age"
+                                           name="age" id="age"/>
+                                    <div style="color:red" th:if="${#fields.hasErrors('age')}"
+                                         th:errors="*{age}">
+                                        Age Error
+                                    </div>
+                                </div>
+                                <div class="container login-form-field justify-content-center p-3"
+                                     style="text-align: center">
+                                    <label for="email" class="fw-bold">Email</label>
+                                    <input autofocus type="email" class="form-control-sm" style="width: 100%"
+                                           placeholder="Email"
+                                           name="email" id="email"/>
+                                    <div style="color:red" th:if="${#fields.hasErrors('email')}"
+                                         th:errors="*{email}">
+                                        Email Error
                                     </div>
                                 </div>
                                 <div class="container login-form-field justify-content-center p-3"

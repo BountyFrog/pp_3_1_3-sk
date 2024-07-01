@@ -17,8 +17,23 @@
                     </div>
                     <div class="form-group fw-bold"
                          style="text-align: center">
-                        <label for="user-name" class="col-form-label">Username</label>
+                        <label for="user-name" class="col-form-label">First name</label>
                         <input type="text" class="form-control" id="user-name">
+                    </div>
+                    <div class="form-group fw-bold"
+                         style="text-align: center">
+                        <label for="user-lastname" class="col-form-label">Last name</label>
+                        <input type="text" class="form-control" id="user-lastname">
+                    </div>
+                    <div class="form-group fw-bold"
+                         style="text-align: center">
+                        <label for="user-age" class="col-form-label">Age</label>
+                        <input type="number" class="form-control" id="user-age">
+                    </div>
+                    <div class="form-group fw-bold"
+                         style="text-align: center">
+                        <label for="user-email" class="col-form-label">Email</label>
+                        <input type="email" class="form-control" id="user-email">
                     </div>
                     <div class="form-group fw-bold"
                          style="text-align: center">
@@ -61,6 +76,9 @@
                     let modal = $(this)
                     modal.find('#user-id').val(data.id)
                     modal.find('#user-name').val(data.username)
+                    modal.find('#user-lastname').val(data.lastname)
+                    modal.find('#user-age').val(data.age)
+                    modal.find('#user-email').val(data.email)
                     modal.find('#user-password').val(data.password)
                 },
                 error: (err) => {
@@ -75,6 +93,9 @@
         let user = {};
         user.id = document.getElementById("user-id").value;
         user.username = document.getElementById("user-name").value;
+        user.lastname = document.getElementById("user-lastname").value;
+        user.age = document.getElementById("user-age").value;
+        user.email = document.getElementById("user-email").value;
         user.password = document.getElementById("user-password").value;
         let roles = document.getElementById("user-roles");
         let selectedRoles = [];

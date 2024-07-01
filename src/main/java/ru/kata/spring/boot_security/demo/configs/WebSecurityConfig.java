@@ -33,7 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "/index", "/login", "/error", "/registration", "/api/**").permitAll()
                 .anyRequest().hasAnyRole("ADMIN", "USER")
                 .and()
-                .formLogin().loginPage("/login").loginProcessingUrl("/process_login")
+                .formLogin().loginPage("/login").usernameParameter("email").loginProcessingUrl("/process_login")
                 .successHandler(successUserHandler)
                 .failureUrl("/login?error").permitAll()
                 .and()
