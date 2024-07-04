@@ -12,6 +12,7 @@ import ru.kata.spring.boot_security.demo.repositories.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -62,7 +63,16 @@ public class AdminService implements AdminServiceInterface {
 
     @Transactional
     public void update(int id, User user) {
-        user.setPassword(userRepository.findById(id).get().getPassword());
+        if (user.getRoles() == null || user.getRoles().isEmpty()) {
+            setRoleDefault(user);
+        }
+        if (passwordEncoder.matches(user.getPassword(), userRepository.findById(id).get().getPassword())) {
+            user.setPassword(userRepository.findById(id).get().getPassword());
+        } else if (Objects.equals(user.getPassword(), "")) {
+            user.setPassword(userRepository.findById(id).get().getPassword());
+        } else {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
         user.setId(id);
         userRepository.save(user);
     }

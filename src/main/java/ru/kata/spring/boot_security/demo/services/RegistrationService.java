@@ -24,7 +24,6 @@ public class RegistrationService {
     }
 
     public String getPrincipalName(Principal principal) {
-        System.out.println("Principal is " + principal);
         return principal.getName();
     }
 }

@@ -43,13 +43,12 @@ public class UserResources {
             }
             throw new PersonNotCreatedException(errorMessage.toString());
         }
-        adminService.add(user);
+        adminService.update(user.getId(), user);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
-    public  ResponseEntity<HttpStatus> delete(@PathVariable("id") int id) {
-        System.out.println("id - " + id);
+    public ResponseEntity<HttpStatus> delete(@PathVariable("id") int id) {
         adminService.delete(id);
         return ResponseEntity.ok(HttpStatus.OK);
     }

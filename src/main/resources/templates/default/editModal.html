@@ -67,29 +67,22 @@
 
 <script>
     $('#userEditDialog').on('shown.bs.modal', function (event) {
-        let button = $(event.relatedTarget)
-        let userId = button.data('userid')
+        let button = $(event.relatedTarget);
+        let userId = button.data('userid');
         if (userId) {
-            $.get({
-                url: '/api/' + userId,
-                success: (data) => {
-                    let modal = $(this)
-                    modal.find('#user-id').val(data.id)
-                    modal.find('#user-name').val(data.username)
-                    modal.find('#user-lastname').val(data.lastname)
-                    modal.find('#user-age').val(data.age)
-                    modal.find('#user-email').val(data.email)
-                    modal.find('#user-password').val(data.password)
-                },
-                error: (err) => {
-                    alert(err);
-                }
-            });
+            fetch('/api/' + userId)
+                .then(response => response.json())
+                .then(data => {
+                    let modal = $(this);
+                    modal.find('#user-id').val(data.id);
+                    modal.find('#user-name').val(data.username);
+                    modal.find('#user-lastname').val(data.lastname);
+                    modal.find('#user-age').val(data.age);
+                    modal.find('#user-email').val(data.email);
+                });
         }
-    })
-
+    });
     $('#save-user-button').click(function () {
-        let modal = $('#userEditDialog')
         let user = {};
         user.id = document.getElementById("user-id").value;
         user.username = document.getElementById("user-name").value;
@@ -112,23 +105,19 @@
         let jsonData = JSON.stringify(user);
         console.log(jsonData);
         let token = $("meta[name='_csrf']").attr("content");
-        $.ajax({
-            url: '/api',
-            type: 'POST',
-            data: JSON.stringify(user),
+        fetch('/api', {
+            method: 'POST',
+            body: jsonData,
             headers: {
+                'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': token
-            },
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: () => {
-                location.reload()
-            },
-            error: (err) => {
-                alert(err);
             }
         })
-        modal.modal('hide');
-    })
-    ;
+            .then(() => {
+                location.reload();
+            })
+            .catch(error => {
+                alert(error);
+            });
+    });
 </script>
